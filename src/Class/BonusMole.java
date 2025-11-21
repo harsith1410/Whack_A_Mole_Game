@@ -1,7 +1,6 @@
 package Class;
 
 import javax.swing.*;
-import java.awt.Color;
 
 public class BonusMole extends HoleOccupant {
     @Override

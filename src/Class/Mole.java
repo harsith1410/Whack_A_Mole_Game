@@ -1,7 +1,7 @@
 package Class;
 
 import javax.swing.*;
-import java.awt.*;
+
 
 public class Mole extends HoleOccupant {
     @Override
@@ -17,7 +17,6 @@ public class Mole extends HoleOccupant {
     @Override
     public Icon getImage() {
         Icon icon = new ImageIcon("Images/Mole.png");
-
         return icon;
     }
 }

@@ -18,6 +18,11 @@ bin/
 #pyenv
 .python-version
 
+#virtual-environment
+/venv/
+/.venv/
+/env/
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

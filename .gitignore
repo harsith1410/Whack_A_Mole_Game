@@ -22,6 +22,7 @@ bin/
 /venv/
 /.venv/
 /env/
+/virtual-env/
 
 ### NetBeans ###
 /nbproject/private/

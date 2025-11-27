@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import Class.*;
 
@@ -12,6 +13,7 @@ public class Game extends JFrame {
     private JLabel highScoreLabel;
     private JPanel gridPanel;
     private JButton[] holes;
+    private HashMap<String,Integer> scores =  new HashMap<>();
 
     private GameEngine engine;
     private Thread thread;
@@ -52,7 +54,7 @@ public class Game extends JFrame {
         ScorePanel.add(timeLabel);
         add(ScorePanel, BorderLayout.NORTH);
 
-        gridPanel = new JPanel(new GridLayout(3, 2, 10, 10));
+        gridPanel = new JPanel(new GridLayout(3, 3, 10, 10));
         gridPanel.setBackground(Color.PINK);
 
         holes = new JButton[9];
@@ -131,7 +133,7 @@ public class Game extends JFrame {
         String name = JOptionPane.showInputDialog(this, "GAME OVER!\nScore: " + finalScore + "\nEnter Name:");
 
         if (name != null && !name.trim().isEmpty()) {
-
+            scores.put(name, finalScore);
             if (finalScore > currentHighScore) {
                 highScoreLabel.setText("High Score: " + finalScore);
                 currentHighScore = finalScore;

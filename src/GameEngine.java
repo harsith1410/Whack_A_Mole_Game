@@ -55,9 +55,9 @@ public class GameEngine implements Runnable {
         int typeRoll = random.nextInt(10);
         HoleOccupant mole;
 
-        if (typeRoll < 6) {
+        if (typeRoll < 5) {
             mole = new Mole();
-        } else if (typeRoll < 9) {
+        } else if (typeRoll < 8) {
             mole = new Bomb();
         } else {
             mole = new BonusMole();

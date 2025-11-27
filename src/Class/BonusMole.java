@@ -5,7 +5,7 @@ import javax.swing.*;
 public class BonusMole extends HoleOccupant {
     @Override
     public int whack() {
-        return 1000; // High reward
+        return 500;
     }
 
     @Override

@@ -16,7 +16,7 @@ public class GameEngine implements Runnable {
         this.gridState = new HoleOccupant[GRID_SIZE];
         this.random = new Random();
         this.score = 0;
-        this.timeRemaining = 60;
+        this.timeRemaining = 15;
         this.isRunning = true;
     }
 
@@ -28,15 +28,15 @@ public class GameEngine implements Runnable {
                 Thread.sleep(1000);
                 timeRemaining--;
 
-                int purgeIndex = random.nextInt(GRID_SIZE);
-                if (gridState[purgeIndex] != null) {
-                    despawn(purgeIndex);
+                int removeMole = random.nextInt(GRID_SIZE);
+                if (gridState[removeMole] != null) {
+                    despawn(removeMole);
                 }
 
                 spawnRandom();
 
                 SwingUtilities.invokeLater(() -> {
-                    gui.updateTimer(timeRemaining);
+                    gui.updateTime(timeRemaining);
                     gui.refreshGrid(gridState);
                 });
             }
@@ -52,25 +52,18 @@ public class GameEngine implements Runnable {
 
     private void spawnRandom() {
         int index = random.nextInt(GRID_SIZE);
-        int tries = 0;
-        while (gridState[index] != null && tries < 10) {
-            index = random.nextInt(GRID_SIZE);
-            tries++;
-        }
-        if (gridState[index] == null) {
-            int typeRoll = random.nextInt(10);
-            HoleOccupant newOccupant;
+        int typeRoll = random.nextInt(10);
+        HoleOccupant mole;
 
-            if (typeRoll < 5) {
-                newOccupant = new Mole();
-            } else if (typeRoll < 9) {
-                newOccupant = new Bomb();
-            } else {
-                newOccupant = new BonusMole();
-            }
-
-            gridState[index] = newOccupant;
+        if (typeRoll < 6) {
+            mole = new Mole();
+        } else if (typeRoll < 9) {
+            mole = new Bomb();
+        } else {
+            mole = new BonusMole();
         }
+        gridState[index] = mole;
+
     }
 
     private void despawn(int index) {

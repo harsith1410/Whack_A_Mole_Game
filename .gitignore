@@ -15,6 +15,15 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+#pyenv
+.python-version
+
+#virtual-environment
+/venv/
+/.venv/
+/env/
+/virtual-env/
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

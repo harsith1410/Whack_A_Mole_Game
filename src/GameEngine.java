@@ -22,10 +22,14 @@ public class GameEngine implements Runnable {
 
     @Override
     public void run() {
-        try {
+
             while (isRunning && timeRemaining > 0) {
 
-                Thread.sleep(1000);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 timeRemaining--;
 
                 int removeMole = random.nextInt(GRID_SIZE);
@@ -44,10 +48,7 @@ public class GameEngine implements Runnable {
             isRunning = false;
             SwingUtilities.invokeLater(() -> gui.gameOver(score));
 
-        } catch (InterruptedException e) {
-            System.out.println("Game Engine Interrupted. Shutting down.");
-            isRunning = false;
-        }
+
     }
 
     private void spawnRandom() {
@@ -73,9 +74,6 @@ public class GameEngine implements Runnable {
     public synchronized int handleWhack(int index) {
         if (!isRunning) return 0;
 
-        if (index < 0 || index >= GRID_SIZE) {
-            throw new InvalidGameStateException("Whack attempt at invalid index: " + index);
-        }
 
         HoleOccupant target = gridState[index];
         int points = 0;
